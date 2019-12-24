@@ -15,7 +15,11 @@ import java.util.List;
 @Dao
 public interface AlbumDao {
 
-    // Выборка по id фильма
+    // Выборка по всем альбомам
+    @Query("SELECT * FROM album")
+    List<Album> getAllAlbums();
+
+    // Выборка по id альбома
     @Query("SELECT * FROM album WHERE id = :id")
     Album getAlbumById(Long id);
 
@@ -33,7 +37,7 @@ public interface AlbumDao {
     @TypeConverters(DateConvert.class)
     List<Album> getAlbumByDate(Date date);
 
-    // Вставка фильма в базу данных
+    // Вставка альбома в базу данных
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void save(Album album);
 
@@ -41,7 +45,7 @@ public interface AlbumDao {
     @Update
     void update(Album album);
 
-    // Удаление фильма
+    // Удаление альбома
     @Delete
     void delete(Album album);
 }
